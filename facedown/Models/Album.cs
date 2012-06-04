@@ -13,7 +13,7 @@ namespace FacebookProject.Models
 		public string cover { get; set; }
 		public int cantFotos { get; set; }
 		
-        public List<Fotos> Fotos { get; set; }
+        public List<Foto> Fotos { get; set; }
     }
 }
 
