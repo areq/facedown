@@ -1,13 +1,13 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<FacebookProject.Models.Post>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<FacebookProject.Models.Album>" %>
 
 
 
- <img class = "album-tapa" src="http://www.facebook.com/<%= Model.album.cover %>" alt="Tapa del album" />      
+ <img class = "album-tapa" src="<%= Model.cover %>" alt="Tapa del album" />      
      <div class = "perfilMensaje">
-        <a href="<%= Model.album.id %>" id="<%= Model.album.id %>" title="Ver las fotos del album <%= Model.album.name %>">Ver las fotos del album <%= Model.album.name %></a>         
+        <a href="<%= Model.id %>" id="<%= Model.id %>" title="Ver las fotos del album <%= Model.name %>">Ver las fotos del album <%= Model.name%></a>         
         <div class="post_caption">
-			<a href="<%=Model.album.link %>"><%= Model.album.name%></a>
+			<a href="<%=Model.link %>"><%= Model.name%></a>
 		</div>
-		<label><%=Model.album.cantFotos%></label>
+		<label><%=Model.cantFotos%></label>
      </div>     
      <br /> 

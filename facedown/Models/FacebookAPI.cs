@@ -103,7 +103,7 @@ namespace FacebookProject.Models
           string  url = "https://graph.facebook.com/" + p + "?access_token=" + oAuth.Token;
           string json = oAuth.WebRequest(oAuthFacebook.Method.GET, url, string.Empty);
           JObject jO = JObject.Parse(json);
-          return (string)jO.SelectToken("data[1].picture");
+          return (string)jO.SelectToken("picture");
         }
     }
     
