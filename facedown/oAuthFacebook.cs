@@ -18,7 +18,7 @@ namespace FacebookProject
         //aca esta la explicacion http://developers.facebook.com/docs/authentication/
         //y aca el listado de permisos http://developers.facebook.com/docs/authentication/permissions
         //si hay que agregar mas se ponen separados por coma
-        public const string SCOPE = "publish_stream,read_stream";
+        public const string SCOPE = "publish_stream,read_stream,user_photos";
 
 
         private string _consumerKey = "";
