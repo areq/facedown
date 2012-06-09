@@ -8,16 +8,19 @@ using Newtonsoft.Json.Linq;
 using System.Xml;
 using System.Globalization;
 using System.Drawing;
+using Spring.Context;
 
-namespace FacebookProject.Models
+namespace facedown.Models
 {
     public class FacebookAPI
     {
-        private oAuthFacebook oAuth = new oAuthFacebook();
+        //private oAuthFacebook oAuth = new oAuthFacebook();
+
+        private oAuthFacebook oAuth;
 
         //aplicar spring
-        public FacebookAPI(){
-            oAuth = new oAuthFacebook();
+        public FacebookAPI(oAuthFacebook _oAuth){
+            oAuth = _oAuth;
         }
 
         public string GetAuthorizationLink()
