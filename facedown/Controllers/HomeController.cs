@@ -19,14 +19,21 @@ namespace FacebookProject.Controllers
 
     // View Model Classes
 
-    public class HomePageViewModel
-    {
+    public class HomePageViewModel{
 
         public User User { get; set; }
         public IEnumerable<Album> Albums { get; set; }
 
     }
 
+    public class FotosViewModel
+    {
+
+        public User User { get; set; }
+        public IEnumerable<Foto> Fotos { get; set; }
+
+    }
+    
     // Controller Class
 
     public class HomeController : Controller
@@ -45,12 +52,20 @@ namespace FacebookProject.Controllers
 
             //el modelo para trabajar en la vista
             HomePageViewModel viewdata = new HomePageViewModel();
-            viewdata.Albums  = FB.GetAlbums("me", "0");
+            viewdata.Albums  = FB.GetAlbums("0");
             viewdata.User = (User)Session["user"];
 
             return View("index", viewdata);
         }
 
+        [AuthFilter]
+        public ActionResult fotos(string id)
+        {
+            FotosViewModel viewdata = new FotosViewModel();
+            viewdata.Fotos = FB.GetFotos(id, "0");
+            viewdata.User = (User)Session["user"];
+            return View("fotos", viewdata);
+        }
         //Petición AJAX para publicar un mensaje en el muro
         //[AuthFilter]
         //////////////public ActionResult Post(string mensaje)

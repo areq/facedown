@@ -12,8 +12,7 @@ namespace FacebookProject.Models
         public string link { get; set; }
 		public string cover { get; set; }
 		public int cantFotos { get; set; }
-		
-        public List<Foto> Fotos { get; set; }
+
     }
 }
 

@@ -59,7 +59,7 @@ namespace FacebookProject.Models
             return user;
         }
 
-        public List<Album> GetAlbums(string uid, string offset)
+        public List<Album> GetAlbums(string offset)
         {
             string url = "";
             //Si la llamo por primera vez traerá los últimos post sino trae los anteriores con una URL que 
@@ -82,8 +82,6 @@ namespace FacebookProject.Models
             int max = o.SelectToken("data").Count();
             for (int i = 0; i < max; i++)
             {
-                //User user = new User();
-
                 Album album = new Album();
                 album.id = (string)o.SelectToken("data[" + i + "].id");
                 album.name = (string)o.SelectToken("data[" + i + "].name");
@@ -96,6 +94,33 @@ namespace FacebookProject.Models
 
             return albumes;
 
+        }
+
+        public List<Foto> GetFotos(string albumid, string offset)
+        {
+            string url = "";
+            url = "https://graph.facebook.com/"+albumid+"/photos?access_token=" + oAuth.Token;
+
+            string json = oAuth.WebRequest(oAuthFacebook.Method.GET, url, string.Empty);
+            List<Foto> fotos = new List<Foto>();
+
+            JObject o = JObject.Parse(json);
+            int max = o.SelectToken("data").Count();
+            for (int i = 0; i < max; i++)
+            {
+                Foto foto = new Foto();
+                foto.id = (string)o.SelectToken("data[" + i + "].id");
+                foto.name = (string)o.SelectToken("data[" + i + "].name");
+                foto.picture = (string)o.SelectToken("data[" + i + "].picture");
+                foto.source = (string)o.SelectToken("data[" + i + "].source");
+                foto.height = (int)o.SelectToken("data[" + i + "].height");
+                foto.width = (int)o.SelectToken("data[" + i + "].width");
+                foto.link = (string)o.SelectToken("data[" + i + "].link");
+
+                fotos.Add(foto);
+            }
+
+            return fotos;
         }
 
         private string getLinkCover(string p)
