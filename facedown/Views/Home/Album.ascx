@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<FacebookProject.Models.Album>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<facedown.Models.Album>" %>
 
 
 

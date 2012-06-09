@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using facedown.Models;
 
-namespace FacebookProject
+namespace facedown
 {
     public class AuthFilter : ActionFilterAttribute
     {
-        Models.FacebookAPI FB = new Models.FacebookAPI();
+        FacebookAPI FB = (FacebookAPI)ServiceFactory.GetImpl("FB");
         public override void  OnActionExecuting(ActionExecutingContext filterContext)
         {
             //Verifico que la variable de sesión isLogued exista sino la "creo"

@@ -11,10 +11,10 @@ using System.Web.UI.HtmlControls;
 using System.Net;
 using System.IO;
 using System.Collections.Specialized;
-using FacebookProject.Controllers;
-using FacebookProject.Models;
+using facedown.Controllers;
+using facedown.Models;
 
-namespace FacebookProject.Controllers
+namespace facedown.Controllers
 {
 
     // View Model Classes
@@ -33,7 +33,7 @@ namespace FacebookProject.Controllers
     {
 
         //aplicar spring
-        Models.FacebookAPI FB = new Models.FacebookAPI();
+        Models.FacebookAPI FB = (FacebookAPI)ServiceFactory.GetImpl("FB");
 
 
         //filtro para checkear si el usuario esta autenticado en Facebook

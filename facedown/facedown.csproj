@@ -34,9 +34,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>lib\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json.Net20">
       <HintPath>lib\Newtonsoft.Json.Net20.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>lib\Spring.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -77,6 +83,7 @@
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\FacebookAPI.cs" />
     <Compile Include="Models\Foto.cs" />
+    <Compile Include="Models\ServiceFactory.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="oAuthFacebook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

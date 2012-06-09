@@ -6,7 +6,7 @@ using System.Net;
 using System.IO;
 using System.Collections.Specialized;
  
-namespace FacebookProject
+namespace facedown
 {
     public class oAuthFacebook
     {
