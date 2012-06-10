@@ -22,11 +22,6 @@ img_descarga = [
 ];
     $(document).ready(function () {
 
-        $('#list-album img').click(function () {
-            $('#list-album img').removeClass('highlight');
-            $(this).addClass('highlight');
-        });
-
         $(".verfotos").on("click", function () {
             $('#content').addClass('loading');
             album.id = $(this).attr('id');
@@ -42,12 +37,25 @@ img_descarga = [
                         trata_imagenes();
                         $(document).scrollTop(0);
                         $('#content').removeClass('loading');
+                        fotos_checkbox();
                     } else {
                         $('#fotos-list').prepend('<h2>Hubo un error en el servidor, por favor pruebe más tarde.</h2>')
                     }
                 }
             });
         });
+
+
+        //marca los li que tienen fotos seleccionadas.
+        function fotos_checkbox() {
+            $('.foto-checkbox').change(function () {
+                if ($(this).is(':checked')) {
+                    $(this).parent().parent().addClass('selected');
+                } else {
+                    $(this).parent().parent().removeClass('selected');
+                }
+            });
+        }
 
         function trata_imagenes() {
             $("#listado_fotos div img").on("click", function () {
