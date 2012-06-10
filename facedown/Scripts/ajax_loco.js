@@ -1,5 +1,8 @@
 ﻿var album = {};
-var img_descarga = [
+var img_descarga = {
+    fotos: []
+};
+img_descarga = [
     { 'id': '123',
         'nombre': 'Album Montaña',
         foto: []
@@ -18,18 +21,14 @@ var img_descarga = [
     }
 ];
     $(document).ready(function () {
-        /*
-        var mostrarfotos = function (data, textStatus) {
-        $('#listado_album').html(data);
-        alert('Load was performed.');
-        alert(textStatus);
-        }
-        */
 
+        $('#list-album img').click(function () {
+            $('#list-album img').removeClass('highlight');
+            $(this).addClass('highlight');
+        });
 
-
-
-        $(".album-fotos .verfotos").on("click", function () {
+        $(".verfotos").on("click", function () {
+            $('#content').addClass('loading');
             album.id = $(this).attr('id');
             album.nombre = $(this).attr('nombre');
             $.ajax({
@@ -39,10 +38,12 @@ var img_descarga = [
                 context: document.body,
                 success: function (data, textStatus) {
                     if (textStatus == 'success') {
-                        $('#listado_album').html(data);
+                        $('#fotos-list').html(data);
                         trata_imagenes();
+                        $(document).scrollTop(0);
+                        $('#content').removeClass('loading');
                     } else {
-                        $('#listado_album').prepend('<h2>Hubo un error en el servidor, por favor pruebe más tarde.</h2>')
+                        $('#fotos-list').prepend('<h2>Hubo un error en el servidor, por favor pruebe más tarde.</h2>')
                     }
                 }
             });
@@ -56,14 +57,14 @@ var img_descarga = [
                 /*
                 i = img_descarga.count;
                 while (i > 0 && ) {
-                    if(album.id==img_descarga[i].id){
-                        img_descarga[0].foto.push({
-                        "id": this.id,
-                        "nombre": this.alt,
-                        "src": this.src
-                        });
-                    }
-                    i++;
+                if(album.id==img_descarga[i].id){
+                img_descarga[0].foto.push({
+                "id": this.id,
+                "nombre": this.alt,
+                "src": this.src
+                });
+                }
+                i++;
                 };
 
                 */
@@ -72,7 +73,7 @@ var img_descarga = [
                     "nombre": this.alt,
                     "src": this.src
                 });
-                
+
             });
         }
 
