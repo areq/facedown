@@ -66,6 +66,15 @@ namespace facedown.Controllers
             viewdata.User = (User)Session["user"];
             return View("fotos", viewdata);
         }
+
+        public ActionResult downloadFotos()
+       {
+           WebClient q=new WebClient();
+           q.DownloadFile("http://photos-g.ak.fbcdn.net/hphotos-ak-snc6/205306_10150936984529596_560505665_s.jpg", @"D:\probando\fotito.jpg");
+           return null;
+       }
+ 
+
         //Petición AJAX para publicar un mensaje en el muro
         //[AuthFilter]
         //////////////public ActionResult Post(string mensaje)

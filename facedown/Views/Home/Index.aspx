@@ -6,9 +6,8 @@
 <head id="Head1" runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Albums de <%= Model.User.nombre_completo %></title>
-
-<script type="text/javascript" src="/Scripts/jquery-1.4.1.min.js"></script>
-
+    <script type="text/javascript" src="/Scripts/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/Scripts/ajax_loco.js"></script>
 </head>
 <body>
 
@@ -26,16 +25,14 @@
                 
                     <div id="contentcolumn">
 
-                        <div id="listado_posts">
+                        <div id="listado_album">
                             <% foreach (var album in Model.Albums) { %>
                                 <% Html.RenderPartial("Album", album);%>
                             <% } %>
-                            <div id="ajax-loader" class="ajax-loader" style="display:none;"><img src="/Content/ajax-loader.gif" alt="Loading..." /></div>
                             <div id="mas_posts" class="mas_posts">
                                  <label id="offset-25" class="mas_posts_link" style="font-weight:normal" >Publicaciones más antiguas</label>
                                                                      
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -44,10 +41,12 @@
                 
     <div  id="footer">
         <p>Grupo 4</p>
+        <input type="text"/>
+
+        <a href='/home/downloadFotos'>apretanding</a>
     </div>
 
     </div>
     
 </body>
 </html>
-
