@@ -14,11 +14,8 @@ namespace facedown.Models
 {
     public class FacebookAPI
     {
-        //private oAuthFacebook oAuth = new oAuthFacebook();
-
         private oAuthFacebook oAuth;
 
-        //aplicar spring
         public FacebookAPI(oAuthFacebook _oAuth){
             oAuth = _oAuth;
         }
@@ -106,16 +103,19 @@ namespace facedown.Models
 
             if (albumid == "mas_fotos")
             {
-
                 url = (string)System.Web.HttpContext.Current.Session["url_next_posts"];
             }
 
-
+            if (url == null)
+            {
+                return new List<Foto>();
+            }
             string json = oAuth.WebRequest(oAuthFacebook.Method.GET, url, string.Empty);
             List<Foto> fotos = new List<Foto>();
 
             JObject o = JObject.Parse(json);
             System.Web.HttpContext.Current.Session["url_next_posts"] = (string)o.SelectToken("paging.next");
+            
             int max = o.SelectToken("data").Count();
             for (int i = 0; i < max; i++)
             {
@@ -130,7 +130,6 @@ namespace facedown.Models
 
                 fotos.Add(foto);
             }
-
             return fotos;
         }
 

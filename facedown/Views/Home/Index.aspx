@@ -8,22 +8,24 @@
 <title>Albums de <%= Model.User.nombre_completo %></title>
     <script type="text/javascript" src="/Scripts/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="/Scripts/ajax_loco.js"></script>
+    <link href="../../Content/Estilos.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="content">
-                 
+                 <div id="user-datos">
                       <img id="img_perfil" src="http://graph.facebook.com/<%= Model.User.id %>/picture?type=large" alt="Foto de perfil de <%= Model.User.nombre_completo %>" />
-                      <br />
-                      <a href="<%= Model.User.link %>" title="Ver perfil completo de <%= Model.User.nombre_completo %>"><%= Model.User.nombre_completo %></a>
- 
-                
-                        <div id="listado_album">
-                            <% foreach (var album in Model.Albums) { %>
-                                <% Html.RenderPartial("Album", album);%>
-                            <% } %>
-                        </div>
-                
+                      <span><%= Model.User.nombre_completo %></span>
+                 </div>       
+                        <div id="fotos-list">
+                            <h2>Elegí las fotos y descargalas en tu computadora en un solo paso.</h2>
+                        </div>                
     </div>
-
+    <div id="list-album">
+        <ul>
+            <% foreach (var album in Model.Albums) { %>
+                <% Html.RenderPartial("Album", album);%>
+            <% } %>
+        </ul>
+    </div>
 </body>
 </html>

@@ -1,5 +1,8 @@
 ﻿var album = {};
-var img_descarga = [
+var img_descarga = {
+    fotos: []
+};
+img_descarga = [
     { 'id': '123',
         'nombre': 'Album Montaña',
         foto: []
@@ -18,18 +21,14 @@ var img_descarga = [
     }
 ];
     $(document).ready(function () {
-        /*
-        var mostrarfotos = function (data, textStatus) {
-        $('#listado_album').html(data);
-        alert('Load was performed.');
-        alert(textStatus);
-        }
-        */
 
+        $('#list-album img').click(function () {
+            $('#list-album img').removeClass('highlight');
+            $(this).addClass('highlight');
+        });
 
-
-
-        $(".album-fotos .verfotos").on("click", function () {
+        $(".verfotos").on("click", function () {
+            $('#content').addClass('loading');
             album.id = $(this).attr('id');
             album.nombre = $(this).attr('nombre');
             $.ajax({
@@ -39,12 +38,14 @@ var img_descarga = [
                 context: document.body,
                 success: function (data, textStatus) {
                     if (textStatus == 'success') {
-                        $('#listado_album').html(data);
+                        $('#fotos-list').html(data);
                         trata_imagenes();
+                        //mostrarMasFotos();
                         escucharScroll();
-                        mostrarMasFotos();
+                        $(document).scrollTop(0);
+                        $('#content').removeClass('loading');
                     } else {
-                        $('#listado_album').prepend('<h2>Hubo un error en el servidor, por favor pruebe más tarde.</h2>')
+                        $('#fotos-list').prepend('<h2>Hubo un error en el servidor, por favor pruebe más tarde.</h2>')
                     }
                 }
             });
@@ -78,32 +79,28 @@ var img_descarga = [
             });
         }
 
-        function escucharScroll() {
-            $(this).on("scroll", (function () {
-                var pos = $(document).scrollTop();
-                var tot = $(document).height();
-                if (pos * 2 >= tot) {
-                    // alert("pasaste la mitad");
+        function mostrarMasFotos() {
+            $.ajax({
+                type: 'POST',
+                url: '/home/fotos/mas_fotos',
+                context: document.body,
+                success: function (data, textStatus) {
+                    if (textStatus == 'success') {
+                        $('#fotos-list').append(data);
+                    } else {
+                        $('#listado_album').prepend('<h2>Hubo un error en el servidor, por favor pruebe más tarde.</h2>')
+                    }
                 }
-            }));
+            })
         }
 
-        function mostrarMasFotos() {
-            $("#mas_fotos").on("click", function () {
-                $.ajax({
-                    type: 'POST',
-                    url: '/home/fotos/' + $(this).attr('id'),
-                    context: document.body,
-                    success: function (data, textStatus) {
-                        if (textStatus == 'success') {
-                            $('#listado_fotos').append(data);
-                            trata_imagenes();
-                            escucharScroll();
-                        } else {
-                            $('#listado_album').prepend('<h2>Hubo un error en el servidor, por favor pruebe más tarde.</h2>')
-                        }
-                    }
-                });
-            })
+        function escucharScroll() {
+            $(this).on("scroll", (function () {
+                var pos = $(window).scrollTop() + $(window).height();
+                var tot = $(document).height();
+                if (pos == tot) {
+                    mostrarMasFotos();
+                }
+            }));
         }
     });	
