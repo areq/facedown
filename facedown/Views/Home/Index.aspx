@@ -10,43 +10,20 @@
     <script type="text/javascript" src="/Scripts/ajax_loco.js"></script>
 </head>
 <body>
-
-    <div id="maincontainer">
-                   
-            <div id = "corpus">
+    <div id="content">
                  
-                <div id="leftcolumn">
                       <img id="img_perfil" src="http://graph.facebook.com/<%= Model.User.id %>/picture?type=large" alt="Foto de perfil de <%= Model.User.nombre_completo %>" />
                       <br />
                       <a href="<%= Model.User.link %>" title="Ver perfil completo de <%= Model.User.nombre_completo %>"><%= Model.User.nombre_completo %></a>
-                </div>
+ 
                 
-                <div id="contentwrapper">
-                
-                    <div id="contentcolumn">
-
                         <div id="listado_album">
                             <% foreach (var album in Model.Albums) { %>
                                 <% Html.RenderPartial("Album", album);%>
                             <% } %>
-                            <div id="mas_posts" class="mas_posts">
-                                 <label id="offset-25" class="mas_posts_link" style="font-weight:normal" >Publicaciones más antiguas</label>
-                                                                     
-                            </div>
                         </div>
-                    </div>
-                </div>
                 
-            </div>   
-                
-    <div  id="footer">
-        <p>Grupo 4</p>
-        <input type="text"/>
-
-        <a href='/home/downloadFotos'>apretanding</a>
     </div>
 
-    </div>
-    
 </body>
 </html>

@@ -25,7 +25,7 @@
                 
                     <div id="contentcolumn">
 
-                        <div id="listado_posts">
+                        <div id="listado_fotos">
                             <% foreach (var foto in Model.Fotos) { %>
                                 <div>
                                     <img src="<%= foto.source %>" height="<%= foto.height%>" width="<%= foto.width%>" alt="<%= foto.name %>" />
