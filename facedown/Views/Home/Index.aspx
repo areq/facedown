@@ -8,10 +8,14 @@
 <title>Albums de <%= Model.User.nombre_completo %></title>
     <script type="text/javascript" src="/Scripts/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="/Scripts/ajax_loco.js"></script>
+    <script type="text/javascript" src="/Scripts/eventos.js"></script>
     <link href="../../Content/Estilos.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="content">
+                    <div id="siguiente">
+                            <input type="submit" value="descargar" />
+                    </div>
                  <div id="user-datos">
                       <img id="img_perfil" src="http://graph.facebook.com/<%= Model.User.id %>/picture?type=large" alt="Foto de perfil de <%= Model.User.nombre_completo %>" />
                       <span><%= Model.User.nombre_completo %></span>
