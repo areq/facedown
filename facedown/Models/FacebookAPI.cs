@@ -81,7 +81,7 @@ namespace facedown.Models
             List<Album> albumes = new List<Album>();
 
             JObject o = JObject.Parse(json);
-//            System.Web.HttpContext.Current.Session["url_next_posts"] = (string)o.SelectToken("paging.next");
+
             int max = o.SelectToken("data").Count();
             for (int i = 0; i < max; i++)
             {
@@ -102,12 +102,20 @@ namespace facedown.Models
         public List<Foto> GetFotos(string albumid, string offset)
         {
             string url = "";
-            url = "https://graph.facebook.com/"+albumid+"/photos?access_token=" + oAuth.Token;
+            url = "https://graph.facebook.com/"+albumid+"/photos?limit=20&access_token=" + oAuth.Token;
+
+            if (albumid == "mas_fotos")
+            {
+
+                url = (string)System.Web.HttpContext.Current.Session["url_next_posts"];
+            }
+
 
             string json = oAuth.WebRequest(oAuthFacebook.Method.GET, url, string.Empty);
             List<Foto> fotos = new List<Foto>();
 
             JObject o = JObject.Parse(json);
+            System.Web.HttpContext.Current.Session["url_next_posts"] = (string)o.SelectToken("paging.next");
             int max = o.SelectToken("data").Count();
             for (int i = 0; i < max; i++)
             {

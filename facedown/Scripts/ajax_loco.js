@@ -41,6 +41,8 @@ var img_descarga = [
                     if (textStatus == 'success') {
                         $('#listado_album').html(data);
                         trata_imagenes();
+                        escucharScroll();
+                        mostrarMasFotos();
                     } else {
                         $('#listado_album').prepend('<h2>Hubo un error en el servidor, por favor pruebe más tarde.</h2>')
                     }
@@ -56,14 +58,14 @@ var img_descarga = [
                 /*
                 i = img_descarga.count;
                 while (i > 0 && ) {
-                    if(album.id==img_descarga[i].id){
-                        img_descarga[0].foto.push({
-                        "id": this.id,
-                        "nombre": this.alt,
-                        "src": this.src
-                        });
-                    }
-                    i++;
+                if(album.id==img_descarga[i].id){
+                img_descarga[0].foto.push({
+                "id": this.id,
+                "nombre": this.alt,
+                "src": this.src
+                });
+                }
+                i++;
                 };
 
                 */
@@ -72,8 +74,36 @@ var img_descarga = [
                     "nombre": this.alt,
                     "src": this.src
                 });
-                
+
             });
         }
 
+        function escucharScroll() {
+            $(this).on("scroll", (function () {
+                var pos = $(document).scrollTop();
+                var tot = $(document).height();
+                if (pos * 2 >= tot) {
+                    // alert("pasaste la mitad");
+                }
+            }));
+        }
+
+        function mostrarMasFotos() {
+            $("#mas_fotos").on("click", function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '/home/fotos/' + $(this).attr('id'),
+                    context: document.body,
+                    success: function (data, textStatus) {
+                        if (textStatus == 'success') {
+                            $('#listado_fotos').append(data);
+                            trata_imagenes();
+                            escucharScroll();
+                        } else {
+                            $('#listado_album').prepend('<h2>Hubo un error en el servidor, por favor pruebe más tarde.</h2>')
+                        }
+                    }
+                });
+            })
+        }
     });	
