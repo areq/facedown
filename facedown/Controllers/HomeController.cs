@@ -69,6 +69,8 @@ namespace facedown.Controllers
 
         public ActionResult downloadFotos()
        {
+           string nombre = Request["nombre"];
+
            WebClient q=new WebClient();
            q.DownloadFile("http://photos-g.ak.fbcdn.net/hphotos-ak-snc6/205306_10150936984529596_560505665_s.jpg", @"D:\probando\fotito.jpg");
            return null;

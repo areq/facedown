@@ -20,16 +20,20 @@ img_descarga = [
         foto: []
     }
 ];
+    var prueba_fotos = {};
+
     $(document).ready(function () {
 
         $(".verfotos").on("click", function () {
+
+            
+            
             $('#content').addClass('loading');
             album.id = $(this).attr('id');
             album.nombre = $(this).attr('nombre');
             $.ajax({
                 type: 'POST',
                 url: '/home/fotos/' + $(this).attr('id'),
-                //data: $(this).attr('id'),
                 context: document.body,
                 success: function (data, textStatus) {
                     if (textStatus == 'success') {
@@ -43,6 +47,7 @@ img_descarga = [
                     }
                 }
             });
+
         });
 
 

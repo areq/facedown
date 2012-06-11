@@ -13,6 +13,7 @@
 </head>
 <body>
     <div id="content">
+        <form method="post" action="/Records/Grabar"> 
                     <div id="siguiente">
                             <input type="submit" value="descargar" />
                     </div>
@@ -22,8 +23,11 @@
                  </div>       
                         <div id="fotos-list">
                             <h2>Elegí las fotos y descargalas en tu computadora en un solo paso.</h2>
-                        </div>                
+                        </div>
+        </form>
+                                        
     </div>
+        <div style="clear:both;height:100px;"></div>
     <div id="list-album">
         <ul>
             <% foreach (var album in Model.Albums) { %>
