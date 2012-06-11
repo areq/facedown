@@ -94,6 +94,7 @@
     <Content Include="Scripts\ajax_loco.js" />
     <Content Include="Scripts\eventos.js" />
     <Content Include="Scripts\jquery-1.7.2.min.js" />
+    <Content Include="Scripts\waypoints.min.js" />
     <Content Include="Views\Home\Album.ascx" />
     <Content Include="Views\Home\Fotos.aspx" />
     <Content Include="Web.config" />

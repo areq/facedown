@@ -39,6 +39,8 @@ img_descarga = [
                     if (textStatus == 'success') {
                         $('#fotos-list').html(data);
                         trata_imagenes();
+                        //mostrarMasFotos();
+                        escucharScroll();
                         $(document).scrollTop(0);
                         $('#content').removeClass('loading');
                         fotos_checkbox();
@@ -90,4 +92,28 @@ img_descarga = [
             });
         }
 
+        function mostrarMasFotos() {
+            $.ajax({
+                type: 'POST',
+                url: '/home/fotos/mas_fotos',
+                context: document.body,
+                success: function (data, textStatus) {
+                    if (textStatus == 'success') {
+                        $('#fotos-list').append(data);
+                    } else {
+                        $('#listado_album').prepend('<h2>Hubo un error en el servidor, por favor pruebe más tarde.</h2>')
+                    }
+                }
+            })
+        }
+
+        function escucharScroll() {
+            $(this).on("scroll", (function () {
+                var pos = $(window).scrollTop() + $(window).height();
+                var tot = $(document).height();
+                if (pos == tot) {
+                    mostrarMasFotos();
+                }
+            }));
+        }
     });	
