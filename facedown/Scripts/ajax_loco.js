@@ -29,17 +29,31 @@ $(document).ready(function () {
 
     $('#descargar').click(function () {
         var check_input = $(":checkbox:checked");
-        alert(check_input[0].attr('name'));
-        for (i = 0; i < check_input.length; i++) {
+        alert(check_input.length);
+        alert(check_input)
+        $.each(check_input, function (key, value) {
+
             $.ajax({
                 type: "POST",
-                url: "/home/downloadFotos/" + check_input[i].attr('name'),
-
+                url: "/home/downloadFotos/",
+                data: value.value,
                 success: function (data, textStatus) {
                     alert(i);
                 }
             })
+
+        });
+        /*
+        for (i = 0; i < check_input.length; i++) {
+        $.ajax({
+        type: "POST",
+        url: "/home/downloadFotos/" + check_input[i].attr('name'),
+
+        success: function (data, textStatus) {
+        alert(i);
         }
+        })
+        }*/
         /*
         //window.location.href = check_input.val();
         
