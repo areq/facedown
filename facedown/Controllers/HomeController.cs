@@ -67,14 +67,47 @@ namespace facedown.Controllers
             return View("fotos", viewdata);
         }
 
-        public ActionResult downloadFotos()
+        public ActionResult downloadFotos(string foto_link)
        {
-           string nombre = Request["nombre"];
+           WebClient q = new WebClient();
+           Response.ClearHeaders();
+           Response.ClearContent();
+           Response.BufferOutput = true;
+           Response.ContentType = "image/jpeg";
+           Response.AppendHeader("content-disposition", "attachment; filename=" + foto_link);
+           byte[] imagen = q.DownloadData(foto_link);
+           Response.BinaryWrite(imagen);
+           Response.End();
 
-           WebClient q=new WebClient();
-           q.DownloadFile("http://photos-g.ak.fbcdn.net/hphotos-ak-snc6/205306_10150936984529596_560505665_s.jpg", @"D:\probando\fotito.jpg");
-           return null;
+           
+
+           /*
+            * String fotos = Request["fotos"];
+           string[] fotos_array = fotos.Split(',');
+
+           Response.ClearHeaders();
+           Response.ClearContent();
+           Response.BufferOutput = true;
+           Response.ContentType = "image/jpeg";
+           
+           WebClient q = new WebClient();
+           
+
+           foreach (string img in fotos_array)
+           {
+               Response.ClearHeaders();
+               Response.AppendHeader("content-disposition", "attachment; filename=" + img);
+               byte[] imagen = q.DownloadData(img);
+               Response.BinaryWrite(imagen);
+               Response.End();
+           }
+           */
+           //q.DownloadFile("http://photos-g.ak.fbcdn.net/hphotos-ak-snc6/205306_10150936984529596_560505665_s.jpg", @"D:\probando\fotito.jpg");
+           //return View("index", fotos);
+
+          return null ;
        }
+
  
 
         //Petición AJAX para publicar un mensaje en el muro

@@ -99,7 +99,7 @@ namespace facedown.Models
         public List<Foto> GetFotos(string albumid, string offset)
         {
             string url = "";
-            url = "https://graph.facebook.com/"+albumid+"/photos?limit=20&access_token=" + oAuth.Token;
+            url = "https://graph.facebook.com/"+albumid+"/photos?limit=30&access_token=" + oAuth.Token;
 
             if (albumid == "mas_fotos")
             {
@@ -120,6 +120,7 @@ namespace facedown.Models
             for (int i = 0; i < max; i++)
             {
                 Foto foto = new Foto();
+                foto.albumid = albumid;
                 foto.id = (string)o.SelectToken("data[" + i + "].id");
                 foto.name = (string)o.SelectToken("data[" + i + "].name");
                 foto.picture = (string)o.SelectToken("data[" + i + "].picture");

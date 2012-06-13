@@ -9,7 +9,4 @@
     <p>
         Put content here.
     </p>
-</asp:Content><!-- <% foreach (var album in Model.Albums) { %>
-                                <% Html.RenderPartial("Album", album); %>
-                                <p>asdasdsadsadsad</p>
-                            <% } %> -->
+</asp:Content>

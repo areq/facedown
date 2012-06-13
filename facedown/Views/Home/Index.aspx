@@ -13,18 +13,19 @@
 </head>
 <body>
     <div id="content">
-        <form method="post" action="/Records/Grabar"> 
+        <!-- <form method="post"> -->
                     <div id="siguiente">
-                            <input type="submit" value="descargar" />
+                            <input type="submit" value="descargar" id="descargar" />
                     </div>
                  <div id="user-datos">
                       <img id="img_perfil" src="http://graph.facebook.com/<%= Model.User.id %>/picture?type=large" alt="Foto de perfil de <%= Model.User.nombre_completo %>" />
                       <span><%= Model.User.nombre_completo %></span>
                  </div>       
                         <div id="fotos-list">
-                            <h2>Elegí las fotos y descargalas en tu computadora en un solo paso.</h2>
+                            <h3>Elegí las fotos y descargalas en tu computadora en un solo paso.</h3><br />
                         </div>
-        </form>
+         <!-- </form> -->
+
                                         
     </div>
         <div style="clear:both;height:100px;"></div>

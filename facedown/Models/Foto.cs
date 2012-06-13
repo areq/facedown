@@ -7,6 +7,7 @@ namespace facedown.Models
 {
     public class Foto
     {
+        public string albumid { get; set; }
         public string id { get; set; }
         public string name { get; set; }
         public string picture { get; set; }
