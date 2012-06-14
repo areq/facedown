@@ -31,27 +31,23 @@ $(document).ready(function () {
         var check_input = $(":checkbox:checked");
         //alert(check_input.length);
         //alert(check_input)
-        var path = {
-            dire: "agustincho"
-        };
 
+        $.each(check_input, function (key, img) {
 
+            $.ajax({
+                type: "POST",
+                url: "/home/downloadFotos/",
+                data: { dire: img.value },
+                cache: false,
+                success: function (specialties) {
+                    alert('anduvo!');
+                },
+                error: function (response) {
+                    alert('fallo');
+                }
+            });
 
-        $.ajax({
-            type: "POST",
-            url: "/home/downloadFotos/",
-            data: JSON.stringify(path),
-            cache: false,
-            success: function (specialties) {
-                alert('anduvo!');
-            },
-            contentType: 'application/json',
-            error: function (response) {
-                alert('fallo');
-            }
-        });
-
-
+    });
 
 
 

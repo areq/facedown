@@ -70,7 +70,8 @@ namespace facedown.Controllers
         [HttpPost]
         public ActionResult downloadFotos(string dire)
        {
-           //string x = Request[""];
+           //string dd = "http://photos-g.ak.fbcdn.net/hphotos-ak-snc6/205306_10150936984529596_560505665_s.jpg";
+           //string de prueba
 
            WebClient q = new WebClient();
            Response.ClearHeaders();
@@ -108,7 +109,7 @@ namespace facedown.Controllers
            //q.DownloadFile("http://photos-g.ak.fbcdn.net/hphotos-ak-snc6/205306_10150936984529596_560505665_s.jpg", @"D:\probando\fotito.jpg");
            //return View("index", fotos);
 
-          return null ;
+          return null;
        }
 
  
