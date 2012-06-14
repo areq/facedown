@@ -4,26 +4,18 @@ var albums_ids = new Array();
 
 $(document).ready(function () {
 
+    //Al clickear el boton de download hace un pedido GET al controller.
     $('#descargar').click(function () {
         var check_input = $(":checkbox:checked");
 
         $.each(check_input, function (key, img) {
-
-            $.ajax({
-                type: "POST",
-                url: "/home/downloadFotos/",
-                data: { dire: img.value },
-                cache: false,
-                success: function (specialties) {
-                },
-                error: function (response) {
-                    alert('fallo');
-                }
-            });
+            var nombre = img.name;
+            var url = "/home/downloadFotos/?dire=" + img.value+"&nombre="+nombre;
+            window.open(url);
         });
     });
 
-
+    //Pedido ajax por las fotos
     $(".verfotos").on("click", function () {
         $(document).scrollTop(0);
         $('#content').addClass('loading');
@@ -74,20 +66,7 @@ $(document).ready(function () {
         });
     }
 
-    function trata_imagenes() {
-        $("#listado_fotos div img").on("click", function () {
-            alert('foto agregada' + this.alt);
-            alert(album.id);
-            alert(album.nombre);
-            img_descarga[0].foto.push({
-                "id": this.id,
-                "nombre": this.alt,
-                "src": this.src
-            });
-
-        });
-    }
-
+    //funcion que muestra mas fotos.
     function mostrarMasFotos() {
         $.ajax({
             type: 'POST',
@@ -103,17 +82,14 @@ $(document).ready(function () {
         })
     }
 
+    //al mover el scroll ejecuta este evento para pedir más fotos.
     function escucharScroll() {
         $(this).on("scroll", (function () {
-            if (i == 0) {
-                i = 1;
                 var pos = $(window).scrollTop() + $(window).height();
                 var tot = $(document).height();
                 if (pos == tot) {
                     mostrarMasFotos();
                 }
-            }
-            i = 0;
         }));
 
     }
