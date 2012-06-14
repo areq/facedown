@@ -4,3 +4,7 @@ obj
 
 # mstest test results
 TestResults
+/facedown.suo.BASE.suo
+/facedown.suo.LOCAL.suo
+/facedown.suo.REMOTE.suo
+/facedownx.suo

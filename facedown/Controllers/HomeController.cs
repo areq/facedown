@@ -67,17 +67,18 @@ namespace facedown.Controllers
             return View("fotos", viewdata);
         }
 
-        public ActionResult downloadFotos()
+        [HttpPost]
+        public ActionResult downloadFotos(string dire)
        {
-           string x = Request;
+           //string x = Request[""];
 
            WebClient q = new WebClient();
            Response.ClearHeaders();
            Response.ClearContent();
            Response.BufferOutput = true;
            Response.ContentType = "image/jpeg";
-           Response.AppendHeader("content-disposition", "attachment; filename=" + x);
-           byte[] imagen = q.DownloadData(x);
+           Response.AppendHeader("content-disposition", "attachment; filename=" + dire);
+           byte[] imagen = q.DownloadData(dire);
            Response.BinaryWrite(imagen);
            Response.End();
 
