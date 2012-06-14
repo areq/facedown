@@ -70,6 +70,7 @@ namespace facedown.Controllers
         [HttpPost]
         public ActionResult downloadFotos(string dire)
        {
+            /*
            //string dd = "http://photos-g.ak.fbcdn.net/hphotos-ak-snc6/205306_10150936984529596_560505665_s.jpg";
            //string de prueba
 
@@ -82,30 +83,21 @@ namespace facedown.Controllers
            byte[] imagen = q.DownloadData(dire);
            Response.BinaryWrite(imagen);
            Response.End();
-
+            esto fue lo ultimo
+             */
            
-
-           /*
-            * String fotos = Request["fotos"];
-           string[] fotos_array = fotos.Split(',');
-
+           string img = "http://photos-g.ak.fbcdn.net/hphotos-ak-snc6/205306_10150936984529596_560505665_s.jpg";
+            
+           WebClient q = new WebClient();
            Response.ClearHeaders();
            Response.ClearContent();
            Response.BufferOutput = true;
            Response.ContentType = "image/jpeg";
+           Response.AppendHeader("content-disposition", "attachment; filename=" + img);
+           byte[] imagen = q.DownloadData(img);
+           Response.BinaryWrite(imagen);
+           Response.End();
            
-           WebClient q = new WebClient();
-           
-
-           foreach (string img in fotos_array)
-           {
-               Response.ClearHeaders();
-               Response.AppendHeader("content-disposition", "attachment; filename=" + img);
-               byte[] imagen = q.DownloadData(img);
-               Response.BinaryWrite(imagen);
-               Response.End();
-           }
-           */
            //q.DownloadFile("http://photos-g.ak.fbcdn.net/hphotos-ak-snc6/205306_10150936984529596_560505665_s.jpg", @"D:\probando\fotito.jpg");
            //return View("index", fotos);
 

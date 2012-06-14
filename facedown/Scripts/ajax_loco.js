@@ -1,36 +1,11 @@
 ﻿var album = {};
-var i = 0;
-var img_descarga = {
-    fotos: []
-};
-img_descarga = [
-    { 'id': '123',
-        'nombre': 'Album Montaña',
-        foto: []
-    },
-    { 'id': '23',
-        'nombre': 'Album de Playa',
-        foto: []
-    },
-    { 'id': '44',
-        'nombre': 'Album pedorro',
-        foto: []
-    },
-    { 'id': '44132123',
-        'nombre': 'Album asdaszd',
-        foto: []
-    }
-];
+
 var albums_ids = new Array();
 
 $(document).ready(function () {
 
-
-
     $('#descargar').click(function () {
         var check_input = $(":checkbox:checked");
-        //alert(check_input.length);
-        //alert(check_input)
 
         $.each(check_input, function (key, img) {
 
@@ -40,43 +15,14 @@ $(document).ready(function () {
                 data: { dire: img.value },
                 cache: false,
                 success: function (specialties) {
-                    alert('anduvo!');
                 },
                 error: function (response) {
                     alert('fallo');
                 }
             });
-
+        });
     });
 
-
-
-
-        //$.each(check_input, function (key, value) {
-
-        //});
-        /*
-        for (i = 0; i < check_input.length; i++) {
-        $.ajax({
-        type: "POST",
-        url: "/home/downloadFotos/" + check_input[i].attr('name'),
-
-        success: function (data, textStatus) {
-        alert(i);
-        }
-        })
-        }*/
-        /*
-        //window.location.href = check_input.val();
-        
-        DownloadFile('http://a4.sphotos.ak.fbcdn.net/hphotos-ak-prn1/25332_362663434595_6414959_n.jpg', 'foto.jpg');
-        $.get('http://a4.sphotos.ak.fbcdn.net/hphotos-ak-prn1/25332_362663434595_6414959_n.jpg'
-        );
-       
-        alert('entro2!');
-        alert(check_input.val());
-        */
-    });
 
     $(".verfotos").on("click", function () {
         $(document).scrollTop(0);
@@ -117,26 +63,6 @@ $(document).ready(function () {
 
     });
 
-    /*$('descargar').click(function () {
-
-    var data = { 'user_ids[]': [] };
-    $(":checked").each(function () {
-    data['albums[]'].push($(this).val());
-    });
-    alert(data);
-    $.ajax({
-    type: 'POST',
-    url: '/home/downloadFotos/',
-    data: data,
-    success: alert('el ajax llego!')
-    });
-    alert('...');
-    });
-    */
-
-
-
-
     //marca los li que tienen fotos seleccionadas.
     function fotos_checkbox() {
         $('.foto-checkbox').change(function () {
@@ -153,20 +79,6 @@ $(document).ready(function () {
             alert('foto agregada' + this.alt);
             alert(album.id);
             alert(album.nombre);
-            /*
-            i = img_descarga.count;
-            while (i > 0 && ) {
-            if(album.id==img_descarga[i].id){
-            img_descarga[0].foto.push({
-            "id": this.id,
-            "nombre": this.alt,
-            "src": this.src
-            });
-            }
-            i++;
-            };
-
-            */
             img_descarga[0].foto.push({
                 "id": this.id,
                 "nombre": this.alt,
@@ -202,10 +114,6 @@ $(document).ready(function () {
                 }
             }
             i = 0;
-            /*$(".mas-fotos").on("click", function () {
-            $(this).detach();
-            mostrarMasFotos($(this));
-            });*/
         }));
 
     }
